@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Net.NetworkInformation;
 using System.Threading;
 
-namespace StopWatch
+namespace Stopwatch
 {
     class Program
     {
@@ -17,8 +15,7 @@ namespace StopWatch
             Console.Clear();
             Console.WriteLine("S = Segundo => 10s = 10 segundos");
             Console.WriteLine("M = Minuto => 1m = 1 minuto");
-            Console.WriteLine("0 = Sair da aplicação");
-            Console.WriteLine("Use ctrl + c para interromper o cronômetro.");
+            Console.WriteLine("0 = Sair");
             Console.WriteLine("Quanto tempo deseja contar?");
 
             string data = Console.ReadLine().ToLower();
@@ -27,19 +24,28 @@ namespace StopWatch
             int multiplier = 1;
 
             if (type == 'm')
-            {
                 multiplier = 60;
-            }
 
             if (time == 0)
-            {
                 System.Environment.Exit(0);
-            }
 
-            Start(time * multiplier);
+            PreStart(time * multiplier);
         }
 
-        static void Start(int time = 0)
+        static void PreStart(int time)
+        {
+            Console.Clear();
+            Console.WriteLine("Ready...");
+            Thread.Sleep(1000);
+            Console.WriteLine("Set...");
+            Thread.Sleep(1000);
+            Console.WriteLine("Go...");
+            Thread.Sleep(2500);
+
+            Start(time);
+        }
+
+        static void Start(int time)
         {
             int currentTime = 0;
 
@@ -52,7 +58,7 @@ namespace StopWatch
             }
 
             Console.Clear();
-            Console.WriteLine("StopWatch Finalizado.");
+            Console.WriteLine("Stopwatch finalizado");
             Thread.Sleep(2500);
             Menu();
         }
